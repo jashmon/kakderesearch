@@ -9,7 +9,7 @@ if (root) init();
 
 async function load() {
   const get = async (url) => { const r = await fetch(url, { headers: { accept: 'application/json' } }); if (!r.ok) throw new Error(r.status); return r.json(); };
-  try { const live = await get('/api/world-events'); if (live && live.events && live.events.length >= 6) return live; } catch (_) { /* fall through */ }
+  try { const live = await get('/api/world-events/'); if (live && live.events && live.events.length >= 6) return live; } catch (_) { /* fall through */ }
   return get(root.dataset.snapshot || 'assets/data/world-events.json');
 }
 
@@ -41,6 +41,7 @@ async function init() {
   if (!globe) root.classList.add('no-webgl');
 
   stamp.textContent = `${events.length} events · updated ${utc(data.generatedAt)}`;
+  if (window.matchMedia('(hover: none)').matches) root.querySelector('.globe-hint').textContent = 'Tap a point · drag to turn';
   root.querySelector('[data-globe-sources]').textContent = 'Headlines: ' + data.sources.join(', ') + '.';
 
   /* filters: one chip per category present */

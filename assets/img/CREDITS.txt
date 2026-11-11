@@ -23,3 +23,10 @@ HOMEPAGE GLOBE (added 12 November 2026)
   The globe uses no photograph or satellite image. Its land is drawn as dots
   from world-land.svg in this folder (Natural Earth 1:110m, public domain,
   see above), sampled in the browser by js/globe/globe.bundle.js.
+  Its country boundaries and coastlines come from assets/data/world-borders.json:
+  Natural Earth 1:10m Admin 0 Countries, India point-of-view edition (public
+  domain), simplified by tools/globe/make-borders.mjs. That edition shows India
+  as India's official maps do, with the whole of Jammu & Kashmir and Ladakh and
+  no disputed or control lines; the build script refuses to write the file
+  unless Srinagar, Leh, Gilgit, Muzaffarabad, Skardu, Aksai Chin, the Shaksgam
+  valley and Itanagar all fall inside India.

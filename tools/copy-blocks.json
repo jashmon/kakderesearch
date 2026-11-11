@@ -1,0 +1,772 @@
+[
+ {
+  "i": 0,
+  "tag": "p",
+  "cls": "hero-dateline a-hero-el",
+  "sec": "hero-dark globe-scene",
+  "html": "<span>Consulting &amp; research</span> <span>Across markets</span> <span>Independent · Founder-led</span>"
+ },
+ {
+  "i": 1,
+  "tag": "h1",
+  "cls": "a-hero-el",
+  "sec": "hero-dark globe-scene",
+  "html": "Big decisions deserve <em>a closer look.</em>"
+ },
+ {
+  "i": 2,
+  "tag": "p",
+  "cls": "hero-sub a-hero-el",
+  "sec": "hero-dark globe-scene",
+  "html": "Kakde Research works with investors, family offices, corporates and advisers on investment, commercial and strategic questions. The question sets the market and the work follows it, with particular depth in emerging markets and India. Available as individual projects or ongoing retained relationships."
+ },
+ {
+  "i": 3,
+  "tag": "h2",
+  "cls": "section-title",
+  "sec": "hero-dark globe-scene",
+  "html": "Where the work is"
+ },
+ {
+  "i": 4,
+  "tag": "p",
+  "cls": "mono-label",
+  "sec": "hero-dark globe-scene",
+  "html": "Founded 2025 · Based in India · Working globally"
+ },
+ {
+  "i": 5,
+  "tag": "p",
+  "cls": "statement-lg a-rise",
+  "sec": "hero-dark globe-scene",
+  "html": "One team, <em>every market</em>."
+ },
+ {
+  "i": 6,
+  "tag": "p",
+  "cls": "a-rise",
+  "sec": "hero-dark globe-scene",
+  "html": "Kakde Research works from India for clients across the world’s leading financial centres, in North America, Europe, the Gulf and East and South-East Asia. There is no twenty-year archive here and no network of offices, and we do not pretend otherwise. There is a founder and a team of six analysts who work every question together, in whichever market it lands: young enough to have no legacy to defend, exacting enough to hold every figure to the same standard, and quick enough to be looking at your question the morning it arrives."
+ },
+ {
+  "i": 7,
+  "tag": "li",
+  "cls": "",
+  "sec": "hero-dark globe-scene",
+  "html": "<b>Where</b><span>The twenty leading financial centres: New York, London, Hong Kong, Singapore, San Francisco, Shanghai, Dubai, Seoul, Shenzhen, Tokyo, Zurich, Los Angeles, Boston, Chicago, Frankfurt, Luxembourg, Washington, D.C., Geneva, Paris and Amsterdam.</span>"
+ },
+ {
+  "i": 8,
+  "tag": "li",
+  "cls": "",
+  "sec": "hero-dark globe-scene",
+  "html": "<b>Clients</b><span>Family offices, hedge funds, private investment offices, private capital and global equity funds.</span>"
+ },
+ {
+  "i": 9,
+  "tag": "li",
+  "cls": "",
+  "sec": "hero-dark globe-scene",
+  "html": "<b>What we provide</b><span>Consulting, research, the Emerging Markets Desk and the India Desk, each as a project or an ongoing relationship.</span>"
+ },
+ {
+  "i": 10,
+  "tag": "li",
+  "cls": "",
+  "sec": "hero-dark globe-scene",
+  "html": "<b>How</b><span>Original sources, an explicit comparison set, judgement labelled as judgement, and direct access to the people doing the work.</span>"
+ },
+ {
+  "i": 11,
+  "tag": "p",
+  "cls": "map-caption globe-legend a-rise",
+  "sec": "hero-dark globe-scene",
+  "html": "<span class=\"map-key\"><i class=\"map-pin\"></i>Leading financial centres</span><span class=\"map-key\"><i class=\"map-pin is-base\"></i>Where the work is done from</span>"
+ },
+ {
+  "i": 12,
+  "tag": "p",
+  "cls": "hero-fig-title",
+  "sec": "hero-dark desk",
+  "html": "Where does growth actually create value?"
+ },
+ {
+  "i": 13,
+  "tag": "p",
+  "cls": "hero-fig-unit",
+  "sec": "hero-dark desk",
+  "html": "Return on capital less cost of capital · global industries · 2016–2026"
+ },
+ {
+  "i": 14,
+  "tag": "p",
+  "cls": "strip-label",
+  "sec": "hero-dark desk",
+  "html": "<span class=\"strip-market\"><svg class=\"strip-key\" viewBox=\"0 0 22 6\" aria-hidden=\"true\" focusable=\"false\"><line x1=\"1\" y1=\"3\" x2=\"21\" y2=\"3\"></line></svg>Software</span>Value-creation spread"
+ },
+ {
+  "i": 15,
+  "tag": "p",
+  "cls": "strip-note",
+  "sec": "hero-dark desk",
+  "html": "Revenue CAGR 14.8% · five years"
+ },
+ {
+  "i": 16,
+  "tag": "p",
+  "cls": "strip-label",
+  "sec": "hero-dark desk",
+  "html": "<span class=\"strip-market\"><svg class=\"strip-key\" viewBox=\"0 0 22 6\" aria-hidden=\"true\" focusable=\"false\"><line x1=\"1\" y1=\"3\" x2=\"21\" y2=\"3\"></line></svg>Semiconductors</span>Value-creation spread"
+ },
+ {
+  "i": 17,
+  "tag": "p",
+  "cls": "strip-note",
+  "sec": "hero-dark desk",
+  "html": "Revenue CAGR 7.8% · five years"
+ },
+ {
+  "i": 18,
+  "tag": "p",
+  "cls": "strip-label",
+  "sec": "hero-dark desk",
+  "html": "<span class=\"strip-market\"><svg class=\"strip-key\" viewBox=\"0 0 22 6\" aria-hidden=\"true\" focusable=\"false\"><line x1=\"1\" y1=\"3\" x2=\"21\" y2=\"3\"></line></svg>Pharmaceuticals</span>Value-creation spread"
+ },
+ {
+  "i": 19,
+  "tag": "p",
+  "cls": "strip-note",
+  "sec": "hero-dark desk",
+  "html": "Revenue CAGR 14.1% · five years"
+ },
+ {
+  "i": 20,
+  "tag": "p",
+  "cls": "strip-label",
+  "sec": "hero-dark desk",
+  "html": "<span class=\"strip-market\"><svg class=\"strip-key\" viewBox=\"0 0 22 6\" aria-hidden=\"true\" focusable=\"false\"><line x1=\"1\" y1=\"3\" x2=\"21\" y2=\"3\"></line></svg>Automotive</span>Value-creation spread"
+ },
+ {
+  "i": 21,
+  "tag": "p",
+  "cls": "strip-note",
+  "sec": "hero-dark desk",
+  "html": "Revenue CAGR 14.2% · five years"
+ },
+ {
+  "i": 22,
+  "tag": "p",
+  "cls": "strip-foot a-rise",
+  "sec": "hero-dark desk",
+  "html": "<em class=\"strip-lead\">Similar growth. Very different value creation.</em> Software, pharmaceuticals and automotive grew revenue at close to 14% a year over five years; their latest value-creation spreads run from +12.5pp to −5.1pp. Growth is an input. Value creation is the outcome."
+ },
+ {
+  "i": 23,
+  "tag": "h2",
+  "cls": "section-title",
+  "sec": "what-we-do",
+  "html": "What we do"
+ },
+ {
+  "i": 24,
+  "tag": "p",
+  "cls": "mono-label",
+  "sec": "what-we-do",
+  "html": "Consulting · Research · Emerging Markets Desk · India Desk"
+ },
+ {
+  "i": 25,
+  "tag": "p",
+  "cls": "section-intro a-rise",
+  "sec": "what-we-do",
+  "html": "All four services are available through individual projects and <a href=\"retained-research/\">ongoing retained relationships</a>. Consulting and research describe the work; the two desks describe where it goes deepest. Scope and cadence are agreed for each engagement, and the question decides whether it sits inside an existing relationship or needs a separately agreed assignment."
+ },
+ {
+  "i": 26,
+  "tag": "p",
+  "cls": "path-kicker",
+  "sec": "what-we-do",
+  "html": "<span>01</span><span class=\"path-mode\">Project or retainer</span>"
+ },
+ {
+  "i": 27,
+  "tag": "h3",
+  "cls": "",
+  "sec": "what-we-do",
+  "html": "<a href=\"consulting/\">Consulting</a>"
+ },
+ {
+  "i": 28,
+  "tag": "p",
+  "cls": "",
+  "sec": "what-we-do",
+  "html": "Research applied to a live decision: which market or opportunity, whether to enter or expand, whether an investment case holds, what a policy turn does to the plan."
+ },
+ {
+  "i": 29,
+  "tag": "p",
+  "cls": "path-kicker",
+  "sec": "what-we-do",
+  "html": "<span>02</span><span class=\"path-mode\">Project or retainer</span>"
+ },
+ {
+  "i": 30,
+  "tag": "h3",
+  "cls": "",
+  "sec": "what-we-do",
+  "html": "<a href=\"research/\">Research</a>"
+ },
+ {
+  "i": 31,
+  "tag": "p",
+  "cls": "",
+  "sec": "what-we-do",
+  "html": "A question investigated to institutional standard, as a defined assignment or ongoing research support, and a library of published and private work to read or request."
+ },
+ {
+  "i": 32,
+  "tag": "p",
+  "cls": "path-kicker",
+  "sec": "what-we-do",
+  "html": "<span>03</span><span class=\"path-mode\">Project or retainer</span>"
+ },
+ {
+  "i": 33,
+  "tag": "h3",
+  "cls": "",
+  "sec": "what-we-do",
+  "html": "<a href=\"emerging-markets/\">Emerging Markets Desk</a>"
+ },
+ {
+  "i": 34,
+  "tag": "p",
+  "cls": "",
+  "sec": "what-we-do",
+  "html": "Comparative research across the emerging markets a question names, for a specific EM assignment or a retained specialist relationship."
+ },
+ {
+  "i": 35,
+  "tag": "p",
+  "cls": "path-kicker",
+  "sec": "what-we-do",
+  "html": "<span>04</span><span class=\"path-mode\">Project or retainer</span>"
+ },
+ {
+  "i": 36,
+  "tag": "h3",
+  "cls": "",
+  "sec": "what-we-do",
+  "html": "<a href=\"india-desk/\">India Desk</a>"
+ },
+ {
+  "i": 37,
+  "tag": "p",
+  "cls": "",
+  "sec": "what-we-do",
+  "html": "The firm’s deepest single-market capability, read from India, for a specific India assignment or a retained specialist relationship."
+ },
+ {
+  "i": 38,
+  "tag": "h2",
+  "cls": "section-title",
+  "sec": "client-perspectives",
+  "html": "Client perspectives"
+ },
+ {
+  "i": 39,
+  "tag": "p",
+  "cls": "mono-label",
+  "sec": "client-perspectives",
+  "html": "Selected client feedback"
+ },
+ {
+  "i": 40,
+  "tag": "p",
+  "cls": "rev-note",
+  "sec": "client-perspectives",
+  "html": "Selected client feedback. Organisations are anonymised; roles and locations are shown."
+ },
+ {
+  "i": 41,
+  "tag": "p",
+  "cls": "rail-count",
+  "sec": "client-perspectives",
+  "html": "<span data-rail-index=\"\">1</span> / <span data-rail-total=\"\">8</span>"
+ },
+ {
+  "i": 42,
+  "tag": "h2",
+  "cls": "section-title",
+  "sec": "research-evidence",
+  "html": "Research as evidence"
+ },
+ {
+  "i": 43,
+  "tag": "p",
+  "cls": "mono-label",
+  "sec": "research-evidence",
+  "html": "Seven published · Six sent on request"
+ },
+ {
+  "i": 44,
+  "tag": "p",
+  "cls": "section-intro a-rise",
+  "sec": "research-evidence",
+  "html": "The published and private research shows how the work is done: how a question is framed, how the evidence is assembled and qualified, and how far a conclusion is allowed to go. The work to date goes deepest in India and the emerging markets it competes with; a research assignment follows wherever the client’s question leads."
+ },
+ {
+  "i": 45,
+  "tag": "p",
+  "cls": "pub-cover-kicker",
+  "sec": "research-evidence",
+  "html": "Flagship institutional study"
+ },
+ {
+  "i": 46,
+  "tag": "p",
+  "cls": "pub-cover-title",
+  "sec": "research-evidence",
+  "html": "Can Global Investors Actually Capture India’s Economic Rise?"
+ },
+ {
+  "i": 47,
+  "tag": "p",
+  "cls": "pub-cover-sub",
+  "sec": "research-evidence",
+  "html": "India, emerging markets and the competition for global capital"
+ },
+ {
+  "i": 48,
+  "tag": "p",
+  "cls": "mono-label a-rise",
+  "sec": "research-evidence",
+  "html": "Flagship study · Published August 2026 · Direct download"
+ },
+ {
+  "i": 49,
+  "tag": "h3",
+  "cls": "statement-lg a-rise",
+  "sec": "research-evidence",
+  "html": "<a href=\"research/can-global-investors-capture-indias-economic-rise/\" style=\"color: inherit; text-decoration: none;\">Can Global Investors Actually Capture India’s Economic Rise?</a>"
+ },
+ {
+  "i": 50,
+  "tag": "p",
+  "cls": "a-rise",
+  "sec": "research-evidence",
+  "html": "A dollar invested in India captures part of India’s rise — materially less than GDP growth implies. Return depends on corporate earnings, valuation, dilution, investability and currency translation. India is structurally attractive but valuation-sensitive, and it has to be sized against the markets competing for the same capital. An India-centred question, answered inside a genuine comparative emerging-markets framework."
+ },
+ {
+  "i": 51,
+  "tag": "p",
+  "cls": "pub-meta a-rise",
+  "sec": "research-evidence",
+  "html": "<span>Published <b>August 2026</b></span><span>Data cut-off 31 July 2026</span><span>118 pages · 22 exhibits</span><span>Ten-market scorecard</span>"
+ },
+ {
+  "i": 52,
+  "tag": "p",
+  "cls": "pub-note a-rise",
+  "sec": "research-evidence",
+  "html": "Report findings carry a 31 July 2026 data cut-off. Nothing in the study is live data."
+ },
+ {
+  "i": 53,
+  "tag": "h2",
+  "cls": "section-title",
+  "sec": "research-evidence",
+  "html": "Where the questions concentrate"
+ },
+ {
+  "i": 54,
+  "tag": "p",
+  "cls": "mono-label",
+  "sec": "research-evidence",
+  "html": "Six themes · The past decade"
+ },
+ {
+  "i": 55,
+  "tag": "p",
+  "cls": "section-intro a-rise",
+  "sec": "research-evidence",
+  "html": "Six of the many ways a question arrives. Each is a standing line of consulting and research work, scoped to the decision in front of you; none is a fixed product, and yours may be none of these. Bring it anyway."
+ },
+ {
+  "i": 56,
+  "tag": "p",
+  "cls": "lib-title",
+  "sec": "research-evidence",
+  "html": "Higher for longer: what the cost of capital does to valuations, leverage and allocation"
+ },
+ {
+  "i": 57,
+  "tag": "p",
+  "cls": "lib-meta",
+  "sec": "research-evidence",
+  "html": "Global · Rates and capital"
+ },
+ {
+  "i": 58,
+  "tag": "p",
+  "cls": "lib-title",
+  "sec": "research-evidence",
+  "html": "Tariffs, trade policy and the re-pricing of supply chains"
+ },
+ {
+  "i": 59,
+  "tag": "p",
+  "cls": "lib-meta",
+  "sec": "research-evidence",
+  "html": "Global · Trade and location"
+ },
+ {
+  "i": 60,
+  "tag": "p",
+  "cls": "lib-title",
+  "sec": "research-evidence",
+  "html": "AI capital expenditure and the concentration of equity returns"
+ },
+ {
+  "i": 61,
+  "tag": "p",
+  "cls": "lib-meta",
+  "sec": "research-evidence",
+  "html": "Global · Markets and sectors"
+ },
+ {
+  "i": 62,
+  "tag": "p",
+  "cls": "lib-title",
+  "sec": "research-evidence",
+  "html": "Private markets and private credit: return outside listed equity"
+ },
+ {
+  "i": 63,
+  "tag": "p",
+  "cls": "lib-meta",
+  "sec": "research-evidence",
+  "html": "Global · Private capital"
+ },
+ {
+  "i": 64,
+  "tag": "p",
+  "cls": "lib-title",
+  "sec": "research-evidence",
+  "html": "EM ex-China: where the allocation goes when China is carved out"
+ },
+ {
+  "i": 65,
+  "tag": "p",
+  "cls": "lib-meta",
+  "sec": "research-evidence",
+  "html": "Emerging markets · Allocation"
+ },
+ {
+  "i": 66,
+  "tag": "p",
+  "cls": "lib-title",
+  "sec": "research-evidence",
+  "html": "India’s investability: ownership limits, free float and what a foreign investor actually captures"
+ },
+ {
+  "i": 67,
+  "tag": "p",
+  "cls": "lib-meta",
+  "sec": "research-evidence",
+  "html": "India · Investability"
+ },
+ {
+  "i": 68,
+  "tag": "p",
+  "cls": "lib-note a-rise",
+  "sec": "research-evidence",
+  "html": "The research library, with six further published studies and the completed India studies, is on the Research page. <a class=\"text-link\" href=\"research/#selected\">The research library <span class=\"arrow\" aria-hidden=\"true\">→</span></a>"
+ },
+ {
+  "i": 69,
+  "tag": "h2",
+  "cls": "section-title",
+  "sec": "specialist-depth",
+  "html": "Specialist depth: emerging markets and India"
+ },
+ {
+  "i": 70,
+  "tag": "p",
+  "cls": "mono-label",
+  "sec": "specialist-depth",
+  "html": "Two desks · Assignment or retained"
+ },
+ {
+  "i": 71,
+  "tag": "p",
+  "cls": "desk-claim a-rise",
+  "sec": "specialist-depth",
+  "html": "India is where the work goes deepest, <em>not where it stops</em>."
+ },
+ {
+  "i": 72,
+  "tag": "p",
+  "cls": "a-rise",
+  "sec": "specialist-depth",
+  "html": "Two specialist desks sit inside the practice. The Emerging Markets Desk reads the emerging markets a question names against one another and against the developed-market anchors an allocator already holds; the peer group follows the question rather than a fixed list. The India Desk is the firm’s deepest single-market capability, read from India with the discipline of an institutional desk."
+ },
+ {
+  "i": 73,
+  "tag": "p",
+  "cls": "a-rise",
+  "sec": "specialist-depth",
+  "html": "Both are available for a specific assignment or as a retained specialist relationship, and both run on the same comparative dataset and the same method as the wider consulting and research work."
+ },
+ {
+  "i": 74,
+  "tag": "h3",
+  "cls": "",
+  "sec": "specialist-depth",
+  "html": "<a href=\"emerging-markets/\">Emerging Markets Desk</a>"
+ },
+ {
+  "i": 75,
+  "tag": "p",
+  "cls": "",
+  "sec": "specialist-depth",
+  "html": "Comparative research across the emerging markets that matter to your organisation."
+ },
+ {
+  "i": 76,
+  "tag": "h3",
+  "cls": "",
+  "sec": "specialist-depth",
+  "html": "<a href=\"india-desk/\">India Desk</a>"
+ },
+ {
+  "i": 77,
+  "tag": "p",
+  "cls": "",
+  "sec": "specialist-depth",
+  "html": "The firm’s deepest continuous capability: India, read from India."
+ },
+ {
+  "i": 78,
+  "tag": "h3",
+  "cls": "",
+  "sec": "specialist-depth",
+  "html": "<a href=\"research/india-in-em/\">India in EM</a>"
+ },
+ {
+  "i": 79,
+  "tag": "p",
+  "cls": "",
+  "sec": "specialist-depth",
+  "html": "Where India stands inside the investable emerging-markets set, and when it does not."
+ },
+ {
+  "i": 80,
+  "tag": "h3",
+  "cls": "",
+  "sec": "specialist-depth",
+  "html": "<a href=\"data/\">The comparative data desk</a>"
+ },
+ {
+  "i": 81,
+  "tag": "p",
+  "cls": "",
+  "sec": "specialist-depth",
+  "html": "Eight economies on one frame; every series sourced, dated and documented."
+ },
+ {
+  "i": 82,
+  "tag": "h2",
+  "cls": "section-title",
+  "sec": "method",
+  "html": "How the work is done"
+ },
+ {
+  "i": 83,
+  "tag": "p",
+  "cls": "mono-label",
+  "sec": "method",
+  "html": "Six commitments · every engagement"
+ },
+ {
+  "i": 84,
+  "tag": "h3",
+  "cls": "",
+  "sec": "method",
+  "html": "Original research"
+ },
+ {
+  "i": 85,
+  "tag": "p",
+  "cls": "",
+  "sec": "method",
+  "html": "Official data, filings and primary sources, pulled and cleaned in-house. Where a series is revised or interrupted, that is recorded rather than smoothed over."
+ },
+ {
+  "i": 86,
+  "tag": "h3",
+  "cls": "",
+  "sec": "method",
+  "html": "An explicit comparison set"
+ },
+ {
+  "i": 87,
+  "tag": "p",
+  "cls": "",
+  "sec": "method",
+  "html": "Every conclusion is tested against the alternatives the decision actually runs between. The peer set is chosen for the question and written into the scope, whether it spans emerging markets, developed anchors or both."
+ },
+ {
+  "i": 88,
+  "tag": "h3",
+  "cls": "",
+  "sec": "method",
+  "html": "Sources and dates"
+ },
+ {
+  "i": 89,
+  "tag": "p",
+  "cls": "",
+  "sec": "method",
+  "html": "Every figure carries its source and its date, and the data appendix is written so that your own team can rebuild it."
+ },
+ {
+  "i": 90,
+  "tag": "h3",
+  "cls": "",
+  "sec": "method",
+  "html": "Judgement labelled as judgement"
+ },
+ {
+  "i": 91,
+  "tag": "p",
+  "cls": "",
+  "sec": "method",
+  "html": "Where the evidence runs out and interpretation begins, the report says so, and states the conditions that would change the view."
+ },
+ {
+  "i": 92,
+  "tag": "h3",
+  "cls": "",
+  "sec": "method",
+  "html": "Direct access"
+ },
+ {
+  "i": 93,
+  "tag": "p",
+  "cls": "",
+  "sec": "method",
+  "html": "You speak to the people doing the work. The founder scopes every engagement, reviews it and stays on the relationship; the analysts are reachable rather than hidden behind an account layer."
+ },
+ {
+  "i": 94,
+  "tag": "h3",
+  "cls": "",
+  "sec": "method",
+  "html": "Independence"
+ },
+ {
+  "i": 95,
+  "tag": "p",
+  "cls": "",
+  "sec": "method",
+  "html": "Consulting and research fees are the only revenue: no brokerage, no execution, no products, no asset-management incentive. A conclusion is allowed to be inconvenient."
+ },
+ {
+  "i": 96,
+  "tag": "p",
+  "cls": "a-rise",
+  "sec": "method",
+  "html": "<a class=\"text-link\" href=\"methodology/\">The methodology, in six stages <span class=\"arrow\" aria-hidden=\"true\">→</span></a>"
+ },
+ {
+  "i": 97,
+  "tag": "p",
+  "cls": "mono-label",
+  "sec": "team",
+  "html": "The founder"
+ },
+ {
+  "i": 98,
+  "tag": "p",
+  "cls": "byline-name",
+  "sec": "team",
+  "html": "Pranav Prakash Kakde"
+ },
+ {
+  "i": 99,
+  "tag": "p",
+  "cls": "byline-role",
+  "sec": "team",
+  "html": "Founder &amp; lead researcher<br>Based in India · working globally"
+ },
+ {
+  "i": 100,
+  "tag": "p",
+  "cls": "statement-lg a-rise",
+  "sec": "team",
+  "html": "Founder-led. You speak to the people doing the work."
+ },
+ {
+  "i": 101,
+  "tag": "p",
+  "cls": "a-rise",
+  "sec": "team",
+  "html": "Before starting Kakde Research I worked in London, at a global investment bank and at a financial-data company, across macro and market data. I trained as a computer engineer before an MSc in Finance, and the data pipelines behind the work are still built in-house rather than lifted from a vendor summary."
+ },
+ {
+  "i": 102,
+  "tag": "p",
+  "cls": "a-rise",
+  "sec": "team",
+  "html": "The practice exists because important investment and strategic decisions are so often made from generic research, inherited assumptions or evidence assembled a long way from the decision itself. The founder scopes every engagement, directs and reviews the work and stays on the relationship; a team of six analysts assembles, checks and maintains the evidence. Founder review on every deliverable caps how much runs at once, and the limit is deliberate."
+ },
+ {
+  "i": 103,
+  "tag": "p",
+  "cls": "a-rise",
+  "sec": "team",
+  "html": "<a class=\"text-link\" href=\"about/\">About the practice <span class=\"arrow\" aria-hidden=\"true\">→</span></a> &nbsp;&nbsp; <a class=\"text-link\" href=\"about/founder/\">The founder <span class=\"arrow\" aria-hidden=\"true\">→</span></a>"
+ },
+ {
+  "i": 104,
+  "tag": "h2",
+  "cls": "",
+  "sec": "cta-band",
+  "html": "Bring us the decision, question or assumption you need tested."
+ },
+ {
+  "i": 105,
+  "tag": "p",
+  "cls": "",
+  "sec": "cta-band",
+  "html": "Describe it and the markets it touches. We will tell you plainly whether it can be answered well, what evidence it requires and whether it is a project or an ongoing relationship."
+ },
+ {
+  "i": 106,
+  "tag": "p",
+  "cls": "footer-line",
+  "sec": "site-footer",
+  "html": "Consulting and research across markets"
+ },
+ {
+  "i": 107,
+  "tag": "p",
+  "cls": "footer-line",
+  "sec": "site-footer",
+  "html": "Particularly deep in emerging markets and India"
+ },
+ {
+  "i": 108,
+  "tag": "p",
+  "cls": "footer-line",
+  "sec": "site-footer",
+  "html": "Based in India · Working globally"
+ },
+ {
+  "i": 109,
+  "tag": "p",
+  "cls": "footer-line",
+  "sec": "site-footer",
+  "html": "<a href=\"mailto:inquiries@kakderesearch.com\">inquiries@kakderesearch.com</a>"
+ }
+]

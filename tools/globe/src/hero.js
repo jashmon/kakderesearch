@@ -39,6 +39,7 @@ async function init() {
 
   const globe = createGlobe(stage, {
     land: root.dataset.land,
+    borders: root.dataset.borders,
     onHover(e) {
       if (e && e.kind) { tip.textContent = e.name; tip.hidden = false; tipFor = e.id; return; }
       tip.hidden = true; tipFor = null;

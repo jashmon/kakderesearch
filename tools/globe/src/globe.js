@@ -20,6 +20,9 @@ import {
   LineBasicMaterial, LinearFilter, Mesh, MeshBasicMaterial, PerspectiveCamera, Raycaster, RingGeometry, SRGBColorSpace,
   Scene, ShaderMaterial, SphereGeometry, Vector2, Vector3, WebGLRenderer
 } from 'three';
+import { LineSegments2 } from 'three-ex/lines/LineSegments2.js';
+import { LineSegmentsGeometry } from 'three-ex/lines/LineSegmentsGeometry.js';
+import { LineMaterial } from 'three-ex/lines/LineMaterial.js';
 
 const DEG = Math.PI / 180;
 const ACCENT = 0x58be96;   /* --accent-bright */
@@ -55,7 +58,7 @@ const FRAG = `
     float land = texture2D(landMap, vec2(uC, vC)).r;
     vec2 d = vec2((vUv.x - uC) * cols, (vUv.y - vC) * rows);
     float r = length(d); float aa = fwidth(r) * 1.2;
-    float dotMask = (1.0 - smoothstep(0.30 - aa, 0.30 + aa, r)) * step(0.5, land) * ready;
+    float dotMask = (1.0 - smoothstep(0.25 - aa, 0.25 + aa, r)) * step(0.5, land) * ready;
 
     /* graticule every 30 degrees, very quiet */
     float gLon = abs(fract(vUv.x * 12.0 + 0.5) - 0.5) / fwidth(vUv.x * 12.0);
@@ -71,7 +74,7 @@ const FRAG = `
     float nearPointer = pointerOn * smoothstep(0.975, 0.999, dot(n, normalize(pointer)));
     vec3 dotCol = mix(vec3(0.52, 0.60, 0.72), vec3(0.957, 0.941, 0.902), 0.30 + 0.70 * nearPointer);
     dotCol = mix(dotCol, vec3(0.345, 0.745, 0.588), nearFocus);
-    float dotAlpha = dotMask * (0.50 + 0.30 * facing + 0.5 * max(nearFocus, nearPointer));
+    float dotAlpha = dotMask * (0.36 + 0.26 * facing + 0.6 * max(nearFocus, nearPointer));
 
     vec3 col = base + vec3(0.957, 0.941, 0.902) * grid * (0.35 + 0.65 * facing);
     col = mix(col, dotCol, clamp(dotAlpha, 0.0, 1.0));
@@ -125,6 +128,36 @@ export function createGlobe(host, opts = {}) {
   const earth = new Mesh(new SphereGeometry(1, 128, 96), new ShaderMaterial({ uniforms, vertexShader: VERT, fragmentShader: FRAG }));
   world.add(earth);
   scene.add(new Mesh(new SphereGeometry(1.18, 64, 48), new ShaderMaterial({ vertexShader: ATMO_VERT, fragmentShader: ATMO_FRAG, side: BackSide, blending: AdditiveBlending, transparent: true, depthWrite: false })));
+
+  /* ----- boundaries: every country border and coast as hairlines, India's outline in the accent -----
+     From assets/data/world-borders.json (Natural Earth, India point-of-view edition): India is drawn as
+     its official maps draw it, whole, with no disputed or control lines. */
+  const lineGroup = new Group(); world.add(lineGroup);
+  const lineMats = [];
+  function addLines(encoded, radius, color, opacity, closed, width) {
+    const pos = [];
+    for (const e of encoded) {
+      let x = 0, y = 0, prev = null, first = null;
+      for (let i = 0; i < e.length; i += 2) {
+        x += e[i]; y += e[i + 1]; const v = toVec(y / 100, x / 100, radius);
+        if (prev) pos.push(prev.x, prev.y, prev.z, v.x, v.y, v.z); else first = v; prev = v;
+      }
+      if (closed && prev && first) pos.push(prev.x, prev.y, prev.z, first.x, first.y, first.z);
+    }
+    /* screen-space lines of a set pixel width, so a border is as legible zoomed out as zoomed in */
+    const geo = new LineSegmentsGeometry(); geo.setPositions(pos);
+    const mat = new LineMaterial({ color, linewidth: width, transparent: true, opacity: 0, depthWrite: false });
+    mat.resolution.set(host.clientWidth || 1, host.clientHeight || 1); mat.userData.target = opacity; lineMats.push(mat);
+    lineGroup.add(new LineSegments2(geo, mat));
+  }
+  let linesIn = 0;
+  if (opts.borders) fetch(opts.borders).then((r) => (r.ok ? r.json() : null)).then((d) => {
+    if (!d) return;
+    addLines(d.coasts, 1.0022, CREAM, 0.30, false, 1);
+    addLines(d.borders, 1.0024, CREAM, 0.62, false, 1.25);
+    addLines(d.india, 1.0034, ACCENT, 1, true, 2.4);
+    linesIn = performance.now();
+  }).catch(() => {});
 
   /* ----- points: events (layer 0) and financial centres (layer 1) ----- */
   const markers = [];
@@ -241,6 +274,7 @@ export function createGlobe(host, opts = {}) {
   function resize() {
     const w = host.clientWidth, h = host.clientHeight; if (!w || !h) return;
     renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix();
+    for (const m of lineMats) m.resolution.set(w, h);
   }
   new ResizeObserver(resize).observe(host); resize();
 
@@ -268,6 +302,7 @@ export function createGlobe(host, opts = {}) {
     if (shiftX) camera.setViewOffset(w, h, -shiftX * w * (1 + 0.45 * zoom), 0, w, h); else camera.clearViewOffset();
     camera.updateProjectionMatrix();
     if (fadeIn) uniforms.ready.value = Math.min(1, (now - fadeIn) / 900);
+    if (linesIn) { const f = Math.min(1, (now - linesIn) / 900); for (const m of lineMats) m.opacity = m.userData.target * f; }
 
     const p = pointerOnSphere(); uniforms.pointerOn.value += ((p ? 1 : 0) - uniforms.pointerOn.value) * k; if (p) uniforms.pointer.value.copy(p);
 

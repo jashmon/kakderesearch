@@ -34,3 +34,12 @@ body::after { left: auto; right: max(calc(var(--gutter) / 2), calc(50% - var(--c
 .path-kicker { flex-direction: column; align-items: flex-start; gap: 14px; }
 .path-kicker > span:first-child { font: 400 40px/1 var(--mono); letter-spacing: -0.02em; color: var(--rule-mid); transition: color 0.2s ease; }
 .path:hover .path-kicker > span:first-child { color: var(--accent); }
+
+/* --- TEST ONLY: the copy switch bar at the foot of the home page --- */
+.copy-switch { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; padding: 18px var(--gutter); background: var(--navy-abyss); border-top: 1px solid var(--rule-dk-mid); color: var(--on-dark-mid); }
+.copy-switch p { margin: 0; font: 400 12px/1.5 var(--mono); letter-spacing: 0.06em; }
+.copy-switch-tag { display: inline-block; margin-right: 8px; padding: 3px 8px; border: 1px solid var(--accent-bright); border-radius: 99px; color: var(--accent-bright); text-transform: uppercase; letter-spacing: 0.12em; font-size: 10.5px; }
+.copy-switch .btn-primary { background: var(--accent-bright); border-color: var(--accent-bright); color: var(--navy-abyss); }
+.copy-switch .btn-primary:hover { background: var(--paper); border-color: var(--paper); }
+.copy-switch :focus-visible { outline: 2px solid var(--accent-bright); outline-offset: 3px; }
+@media print { .copy-switch { display: none; } }

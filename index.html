@@ -26,7 +26,7 @@
   <link rel="preload" href="assets/fonts/JetBrainsMono.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/fonts.css?v=6177cedeb4">
   <link rel="stylesheet" href="css/main.css?v=ee301c8e54">
-  <link rel="stylesheet" href="css/direction-b.css?v=b1">
+  <link rel="stylesheet" href="css/direction-b.css?v=b2">
   <link rel="stylesheet" href="css/globe.css?v=g8">
 
   <script src="/js/boot.js?v=b01d20b75d"></script>
@@ -39,7 +39,7 @@
   <script defer src="js/app.js?v=43f557e49a"></script>
   <script defer src="js/hero-value.js?v=0201b79653"></script>
   <script defer src="js/request.js?v=36bd74848f"></script>
-  <script type="module" src="js/globe/globe.bundle.js?v=g7"></script>
+  <script type="module" src="js/globe/globe.bundle.js?v=g10"></script>
   <script defer src="js/rail.js?v=1d20fb97d0"></script>
 
   <script type="application/ld+json">
@@ -146,7 +146,7 @@
          closes in on India and shows the twenty leading financial centres
          for "Where the work is". Without WebGL or script the flat map and
          the text carry everything. -->
-    <section class="hero-dark globe-scene" data-globe data-mode="hero" data-land="assets/img/world-land.svg" data-snapshot="assets/data/world-events.json">
+    <section class="hero-dark globe-scene" data-globe data-mode="hero" data-land="assets/img/world-land.svg" data-borders="assets/data/world-borders.json" data-snapshot="assets/data/world-events.json">
       <div class="globe-sticky">
         <div class="globe-stage" data-globe-stage>
           <article class="globe-card" data-globe-card hidden>
@@ -655,6 +655,15 @@
       <p>&copy; 2026 Kakde Research</p>
     </div>
   </footer>
+
+  <!-- TEST ONLY: flips the home page between the plain-language rewrite and the original V16 copy
+       (js/copy-switch.js). Remove this block and the script tag below when the test is over. -->
+  <div class="copy-switch">
+    <p><span class="copy-switch-tag">Test</span> <span data-copy-state>Showing: original Kakde Research copy</span></p>
+    <button type="button" class="btn btn-primary" data-copy-switch>Switch copy</button>
+  </div>
+  <script src="js/copy-switch.js?v=c2"></script>
+
 
   <!-- ============ REQUEST-A-REPORT DIALOG ============
        One dialog for every "Request the report" button on the page. Opened,

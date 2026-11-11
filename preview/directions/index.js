@@ -1,1 +1,0 @@
-const d=document.getElementById("d"),m=document.getElementById("m");const set=(on)=>{document.body.classList.toggle("mobile",on);m.setAttribute("aria-pressed",on);d.setAttribute("aria-pressed",!on)};d.onclick=()=>set(false);m.onclick=()=>set(true);

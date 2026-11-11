@@ -4,5 +4,3 @@ Disallow: /api/
 
 Sitemap: https://www.kakderesearch.com/sitemap.xml
 
-# Design previews (three directions, globe hero): not for indexing.
-Disallow: /preview/

@@ -1,0 +1,107 @@
+/* ==========================================================================
+   The globe scene: the hero and "Where the work is" share one pinned globe.
+   Wide screens: the stage is pinned for the height of both panels and the
+   text scrolls over its left side. Narrow screens: nothing is pinned; the
+   stage sits in a slot under the hero's words (js/globe moves it there).
+   ========================================================================== */
+.globe-scene {
+  padding: 0;
+  overflow: clip;                       /* not hidden: a scroll container would break the pin */
+  background: radial-gradient(90% 70% at 72% 32%, #132a50 0%, var(--navy-deep) 46%, var(--navy-abyss) 100%);
+}
+.globe-scene::before, .globe-scene::after { content: none; }
+.globe-sticky { position: sticky; top: 0; height: 100vh; height: 100svh; margin-bottom: -100vh; margin-bottom: -100svh; z-index: 0; }
+.globe-stage { position: absolute; inset: 0; touch-action: pan-y; }
+/* A scrim under the text column: whatever the globe is doing, the words sit on the page's own navy. */
+.globe-sticky::after { content: ''; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(90deg, var(--navy-abyss) 0%, rgba(10, 21, 38, 0.94) 30%, rgba(10, 21, 38, 0.55) 44%, rgba(10, 21, 38, 0) 58%); }
+.globe-stage canvas { position: absolute; inset: 0; width: 100% !important; height: 100% !important; display: block; cursor: grab; opacity: 0; transition: opacity 0.9s var(--ease-out, ease); }
+.globe-stage.is-ready canvas { opacity: 1; }
+.globe-stage canvas.is-dragging { cursor: grabbing; }
+
+.globe-panel { position: relative; z-index: 1; display: flex; align-items: center; min-height: 100vh; min-height: 100svh; padding-top: calc(var(--header-h) + 24px); padding-bottom: 40px; pointer-events: none; }
+.globe-col { width: min(46%, 590px); pointer-events: auto; }
+.globe-slot { display: none; }
+.globe-scene h1 { font-size: clamp(40px, 4.7vw, 74px); }
+.globe-scene .hero-sub { max-width: 48ch; margin-top: clamp(20px, 3vh, 32px); }
+.globe-scene .hero-actions { margin-top: clamp(22px, 3.4vh, 34px); }
+
+/* --- the event bar: one event at a time --- */
+.globe-bar { margin-top: clamp(28px, 5vh, 56px); max-width: 520px; border-top: 1px solid var(--rule-dk-mid); padding-top: 14px; }
+.globe-bar[hidden] { display: none; }
+.globe-bar-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px; margin: 0 0 12px; font: 500 11px/1.4 var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--on-dark-muted); }
+.globe-bar-place { margin: 0 0 6px; font: 500 11px/1.4 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-bright); }
+.globe-bar-title { margin: 0; min-height: 2.6em; font: 400 clamp(18px, 1.5vw, 21px)/1.3 var(--serif); color: var(--on-dark); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-wrap: pretty; }
+.globe-bar-meta { margin: 8px 0 0; font: 400 12px/1.5 var(--mono); color: var(--on-dark-muted); }
+.globe-bar-meta a { color: var(--on-dark); text-underline-offset: 3px; }
+.globe-bar-nav { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; margin-top: 14px; font: 400 12px/1 var(--mono); color: var(--on-dark-mid); }
+.globe-bar-nav > button, .globe-zoom button { all: unset; box-sizing: border-box; display: inline-grid; place-items: center; width: 40px; height: 40px; border: 1px solid var(--rule-dk-mid); color: var(--on-dark); font: 400 16px/1 var(--sans); cursor: pointer; transition: background-color 0.2s ease, border-color 0.2s ease; }
+.globe-bar-nav > button:hover, .globe-zoom button:hover { border-color: var(--on-dark); background: rgba(244, 240, 230, 0.08); }
+.globe-bar-nav > button:active, .globe-zoom button:active { transform: translateY(1px); }
+.globe-bar-nav > button:focus-visible, .globe-zoom button:focus-visible, .globe-all summary:focus-visible, .globe-item:focus-visible { outline: 2px solid var(--accent-bright); outline-offset: 2px; }
+.globe-all { flex: 1 1 100%; margin-top: 6px; }
+.globe-all summary { display: inline-block; cursor: pointer; padding: 8px 0; font: 500 11px/1 var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--on-dark-mid); list-style: none; border-bottom: 1px solid var(--rule-dk-mid); }
+.globe-all summary::-webkit-details-marker { display: none; }
+.globe-all summary:hover { color: var(--on-dark); border-color: var(--on-dark); }
+.globe-list { list-style: none; margin: 10px 0 0; padding: 0; max-height: 264px; overflow: auto; scrollbar-width: thin; scrollbar-color: var(--rule-dk-mid) transparent; background: rgba(10, 21, 38, 0.72); backdrop-filter: blur(6px); }
+.globe-item { all: unset; box-sizing: border-box; display: grid; gap: 2px; width: 100%; padding: 10px 12px; border-top: 1px solid var(--rule-dk); border-left: 2px solid transparent; cursor: pointer; }
+.globe-item:hover, .globe-item.is-active { border-left-color: var(--accent-bright); background: rgba(244, 240, 230, 0.05); }
+.globe-item-place { font: 500 10.5px/1.4 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-bright); }
+.globe-item-title { font: 400 15px/1.3 var(--serif); color: var(--on-dark); }
+.globe-item-meta { font: 400 11px/1.4 var(--mono); color: var(--on-dark-muted); }
+.globe-note { margin: 10px 0 0; font: 400 12px/1.5 var(--sans); color: var(--on-dark-muted); }
+
+/* --- on the globe: hover card, centre label, zoom --- */
+.globe-card { position: absolute; left: 0; top: 0; z-index: 3; transform: translate(var(--x, 0), var(--y, 0)); width: min(300px, 70vw); padding: 12px 14px; background: var(--paper-up); color: var(--body-c); box-shadow: 0 18px 50px rgba(3, 10, 24, 0.5); pointer-events: none; transition: opacity 0.2s ease; }
+.globe-card[hidden] { display: block; opacity: 0; visibility: hidden; }
+.globe-card.is-behind { opacity: 0; }
+.globe-card-place { margin: 0 0 4px; font: 500 10.5px/1.4 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+.globe-card-title { margin: 0; font: 500 16px/1.3 var(--serif); color: var(--ink); }
+.globe-card-meta { margin: 6px 0 0; font: 400 11.5px/1.4 var(--mono); color: var(--muted); }
+.globe-tip { position: absolute; left: 0; top: 0; z-index: 3; margin: 0; transform: translate(calc(var(--x, 0px) - 50%), calc(var(--y, 0px) - 100%)); padding: 5px 9px; background: var(--paper-up); color: var(--ink); font: 500 11px/1.2 var(--mono); letter-spacing: 0.06em; white-space: nowrap; pointer-events: none; }
+.globe-tip[hidden] { display: none; }
+.globe-zoom { position: absolute; right: var(--gutter); bottom: clamp(20px, 5vh, 44px); z-index: 3; display: none; gap: 6px; }
+.has-webgl .globe-zoom { display: flex; }
+.globe-zoom button { background: rgba(10, 21, 38, 0.6); backdrop-filter: blur(6px); }
+.globe-zoom .globe-zoom-reset { width: auto; padding: 0 12px; font: 500 11px/1 var(--mono); letter-spacing: 0.1em; text-transform: uppercase; }
+
+/* --- "Where the work is" on the dark scene --- */
+.globe-scene .section-head { border-color: var(--rule-dk-mid); }
+.globe-scene .section-title, .globe-scene .statement-lg { color: var(--on-dark); }
+.globe-scene .statement-lg em { color: var(--accent-bright); }
+.globe-scene .mono-label { color: var(--on-dark-muted); }
+.globe-panel.is-work p { color: var(--on-dark-mid); }
+.globe-panel.is-work .statement-lg { margin: 0 0 var(--s3); color: var(--on-dark); }
+.globe-panel.is-work .section-head { margin-bottom: var(--s4); }
+.globe-scene .who-facts { border-top-color: var(--rule-dk-mid); }
+.globe-scene .who-facts li { border-bottom-color: var(--rule-dk); color: var(--on-dark-mid); grid-template-columns: 132px minmax(0, 1fr); }
+.globe-scene .who-facts li b { color: var(--on-dark); }
+.globe-legend { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-top: var(--s3); font: 400 11.5px/1.4 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--on-dark-muted); }
+.globe-legend .map-pin { background: var(--paper); border-color: var(--paper); }
+.globe-legend .map-pin.is-base { background: var(--accent-bright); border-color: var(--accent-bright); box-shadow: 0 0 0 3px rgba(88, 190, 150, 0.3); }
+.has-webgl .globe-panel .map { display: none; }
+.no-webgl .globe-sticky, .no-webgl .globe-legend { display: none; }
+.globe-panel .map { pointer-events: auto; width: min(48%, 640px); margin-left: auto; }
+
+/* --- the data desk: the V16 hero figure in a band of its own --- */
+.hero-dark.desk { padding-top: clamp(56px, 7vw, 104px); padding-bottom: 0; background: var(--navy-abyss); }
+.hero-dark.desk::before, .hero-dark.desk::after { content: none; }
+.desk .hero-fig { max-width: 980px; }
+
+@media (max-width: 960px) {
+  .globe-sticky { position: static; height: 0; margin: 0; }
+  .globe-sticky::after { content: none; }
+  .globe-panel { display: block; min-height: 0; padding-top: calc(var(--header-h) + 20px); padding-bottom: 28px; }
+  .globe-panel.is-work { padding-top: 48px; padding-bottom: 56px; }
+  .globe-col { width: auto; }
+  /* phone order in the hero: words, actions, globe, then the event bar under it */
+  .globe-panel.is-hero { display: flex; flex-direction: column; align-items: stretch; }
+  .globe-panel.is-hero .globe-col { display: contents; }
+  .globe-panel.is-hero .globe-slot { order: 2; }
+  .globe-panel.is-hero .globe-bar { order: 3; margin-top: 8px; }
+  .has-webgl .globe-slot { display: block; position: relative; height: min(96vw, 540px); margin: 12px calc(var(--gutter) * -1) 0; pointer-events: auto; }
+  .globe-zoom { right: var(--gutter); bottom: 10px; }
+  .globe-panel .map { width: auto; margin-top: 24px; }
+  .globe-bar { max-width: none; }
+}
+@media (prefers-reduced-motion: reduce) { .globe-stage canvas { transition: none; } }
+@media print { .globe-sticky, .globe-slot, .globe-bar { display: none !important; } .globe-panel { min-height: 0; } .globe-panel .map { display: block !important; } }

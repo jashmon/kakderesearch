@@ -13,7 +13,6 @@ Consumers: `js/app.js` uses GSAP, ScrollTrigger, SplitText and Lenis; `js/hero-v
 
 To verify: `sha256sum js/vendor/*.js`. To update a library, replace the file, record the new version and hash here, and run `node --test tests/` plus a visual pass of the homepage hero, the data desk and the client-perspectives rail.
 
-## Globe (preview/globe/)
+## Globe (js/globe/)
 
-`preview/globe/js/globe.bundle.js` is built from `preview/globe/src/hero.js` and `src/globe.js` with three.js 0.187.0 (MIT) bundled in, so the page loads one same-origin module and the `script-src 'self'` policy holds. To rebuild: `npm pack three@0.187.0`, unpack it, then
-`npx esbuild src/hero.js --bundle --minify --format=esm --target=es2020 --alias:three=<unpacked>/package/build/three.module.js --outfile=js/globe.bundle.js`.
+`js/globe/globe.bundle.js` is built from `tools/globe/src/hero.js` and `tools/globe/src/globe.js` with three.js 0.187.0 (MIT) bundled in, so the home page loads one same-origin module and the `script-src 'self'` policy holds. To rebuild after editing the sources: `bash tools/globe/build.sh`, then bump the `?v=` on the script tag in `index.html`. The day's events come from `api/world-events.js`; `assets/data/world-events.json` is the dated snapshot used when the feed is unavailable.

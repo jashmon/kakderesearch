@@ -3,7 +3,7 @@
    globe. Reads the public RSS feeds of named publishers and central banks,
    keeps the items that bear on markets (rates, trade, energy, currencies,
    growth, elections, conflict), pins each to the place its headline names,
-   and returns at most 24. Headline, publisher, time and link only: nothing
+   and returns at most 12, one per place. Headline, publisher, time and link only: nothing
    is rewritten, summarised or attributed to Kakde Research.
 
    Cached at the edge for 24 hours (s-maxage), so the feeds are read about
@@ -169,7 +169,7 @@ function similar(a, b) {
 
 /* Pure: feed items in, ranked and placed events out. */
 function buildEvents(feedItems, now, limit) {
-  const max = limit || 24; const out = [];
+  const max = limit || 12; const out = [];
   for (const { feed, item } of feedItems) {
     if (NOISE.test(item.title)) continue;
     const text = item.title + ' ' + item.summary;
@@ -188,12 +188,10 @@ function buildEvents(feedItems, now, limit) {
   const kept = []; const perPlace = {}; const perSource = {};
   for (const e of out) {
     if (kept.length >= max) break;
-    if ((perPlace[e._key] || 0) >= 2) continue;
+    if (perPlace[e._key]) continue;                 /* one event per place: the globe stays readable */
     if ((perSource[e.source] || 0) >= 6) continue;
     if (kept.some((k) => similar(k.title, e.title))) continue;
     perPlace[e._key] = (perPlace[e._key] || 0) + 1; perSource[e.source] = (perSource[e.source] || 0) + 1;
-    /* Two events in one city sit side by side rather than on top of each other. */
-    if (perPlace[e._key] === 2) { e.lat += 1.6; e.lon += 2.4; }
     kept.push(e);
   }
   const top = kept.length ? kept[0]._score : 1;

@@ -1,3 +1,0 @@
-const S={software:[7.9,6.7,6.5,5.2,8.9,12.4,13.7,3.4,6.6,9.8,12.5],semis:[0.3,1.4,4.2,5.7,1.9,5.2,9.4,2.1,-2.5,2.3,6.4],pharma:[3.3,4.1,4.1,1.1,3,6.4,8.9,2.5,3.6,3.9,5.5],auto:[-1.5,-0.1,-1.4,-2.1,-1.9,-4.2,-0.5,-5.3,-1.2,-3.4,-5.1]};
-const bars=document.getElementById('bars');let k=0;for(let y=0;y<11;y++)for(const s of Object.values(S)){const v=s[y],i=document.createElement('i');i.style.height=Math.max(4,Math.abs(v)/13.7*100)+'%';if(v<0)i.className='neg';i.style.animationDelay=(0.5+k++*0.018)+'s';bars.append(i)}
-const li=[...document.querySelectorAll('#steps li')];addEventListener('scroll',()=>{const mid=innerHeight*.6;let on=0;li.forEach((l,i)=>{if(l.getBoundingClientRect().top<mid)on=i});li.forEach((l,i)=>l.classList.toggle('on',i<=on))},{passive:true});

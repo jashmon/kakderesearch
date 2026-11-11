@@ -19,19 +19,7 @@ RETIRED
   mumbai-haze-2400.jpg / mumbai-haze-1200.jpg - Pexels photo 10975806,
   Pexels Licence. Removed 12 August 2026; replaced by the skyline plate.
 
-GLOBE TEXTURES (preview/globe/assets/globe/, added 12 November 2026)
-  earth-day-4k.webp / earth-day-2k.webp
-    Blue Marble Next Generation with topography and bathymetry.
-    Source:  Reto Stöckli, NASA Earth Observatory, via Wikimedia Commons
-             (File:Blue Marble Next Generation + topography + bathymetry.jpg).
-    Licence: Public domain (NASA). Resized and converted to WebP.
-  earth-night-2k.webp
-    "The earth at night", NASA Earth Observatory, via Wikimedia Commons
-    (File:The earth at night.jpg).
-    Licence: Public domain (NASA). Resized and converted to WebP.
-  earth-clouds-2k.webp
-    Earth cloud map, Solar System Scope, via Wikimedia Commons
-    (File:Solarsystemscope texture 8k earth clouds.jpg).
-    Licence: CC BY 4.0 — attribution required wherever the globe is shown;
-             it is given on the Sources page line for the globe. Greyscale,
-             resized and converted to WebP.
+HOMEPAGE GLOBE (added 12 November 2026)
+  The globe uses no photograph or satellite image. Its land is drawn as dots
+  from world-land.svg in this folder (Natural Earth 1:110m, public domain,
+  see above), sampled in the browser by js/globe/globe.bundle.js.

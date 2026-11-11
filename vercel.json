@@ -1,0 +1,226 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "cleanUrls": false,
+  "trailingSlash": true,
+  "redirects": [
+    {
+      "source": "/advisory",
+      "destination": "/consulting/",
+      "permanent": true
+    },
+    {
+      "source": "/advisory/:path*",
+      "destination": "/consulting/",
+      "permanent": true
+    },
+    {
+      "source": "/services",
+      "destination": "/consulting/",
+      "permanent": true
+    },
+    {
+      "source": "/services/:path*",
+      "destination": "/consulting/",
+      "permanent": true
+    },
+    {
+      "source": "/research/the-india-you-cant-buy",
+      "destination": "/research/can-global-investors-capture-indias-economic-rise/",
+      "permanent": true
+    },
+    {
+      "source": "/research/the-india-you-cant-buy/:path*",
+      "destination": "/research/can-global-investors-capture-indias-economic-rise/",
+      "permanent": true
+    },
+    {
+      "source": "/research/credibility-and-transmission",
+      "destination": "/research/#selected",
+      "permanent": true
+    },
+    {
+      "source": "/research/credibility-and-transmission/:path*",
+      "destination": "/research/#selected",
+      "permanent": true
+    },
+    {
+      "source": "/research/the-balance-sheet-decade",
+      "destination": "/research/#selected",
+      "permanent": true
+    },
+    {
+      "source": "/research/the-balance-sheet-decade/:path*",
+      "destination": "/research/#selected",
+      "permanent": true
+    },
+    {
+      "source": "/research/the-rupee-managed",
+      "destination": "/research/#selected",
+      "permanent": true
+    },
+    {
+      "source": "/research/the-rupee-managed/:path*",
+      "destination": "/research/#selected",
+      "permanent": true
+    },
+    {
+      "source": "/research/promoter-nation",
+      "destination": "/research/#selected",
+      "permanent": true
+    },
+    {
+      "source": "/research/promoter-nation/:path*",
+      "destination": "/research/#selected",
+      "permanent": true
+    },
+    {
+      "source": "/emerging-markets-desk",
+      "destination": "/emerging-markets/",
+      "permanent": true
+    },
+    {
+      "source": "/emerging-markets-desk/:path*",
+      "destination": "/emerging-markets/",
+      "permanent": true
+    },
+    {
+      "source": "/api/research-request",
+      "destination": "/api/request-report",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "kakderesearch.com"
+        }
+      ],
+      "destination": "https://www.kakderesearch.com/:path*",
+      "permanent": true
+    }
+  ],
+  "headers": [
+    {
+      "source": "/((?!preview/).*)",
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; object-src 'none'; img-src 'self' data:; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self'; upgrade-insecure-requests"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=63072000; includeSubDomains; preload"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=(), browsing-topics=()"
+        }
+      ]
+    },
+    {
+      "source": "/preview/(.*)",
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; frame-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'; img-src 'self' data:; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self'; upgrade-insecure-requests"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=63072000; includeSubDomains; preload"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=(), browsing-topics=()"
+        },
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    },
+    {
+      "source": "/assets/fonts/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/assets/img/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=2592000"
+        }
+      ]
+    },
+    {
+      "source": "/(css|js|assets/data)/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=604800, stale-while-revalidate=86400"
+        }
+      ]
+    },
+    {
+      "source": "/assets/img/og/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=604800"
+        }
+      ]
+    },
+    {
+      "source": "/api/((?!world-events).*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store"
+        }
+      ]
+    },
+    {
+      "source": "/preview/globe/assets/globe/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=2592000"
+        }
+      ]
+    }
+  ],
+  "functions": {
+    "api/request-report.js": {
+      "maxDuration": 30
+    }
+  }
+}

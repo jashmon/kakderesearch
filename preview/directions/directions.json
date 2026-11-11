@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "conventions": ["independence stated in the first screen", "one primary action ('Discuss a Project') always in the header", "research items carry a type label and a date", "sources and method under every figure", "no overlays on arrival"],
+  "directions": [
+    { "id": "A", "name": "The Journal", "thesis": "Present the firm as its publication: the current study is the first screen, on paper, in a serif.",
+      "personality": ["calm", "editorial", "assured"], "anchor": "bridgewater-com",
+      "parts": {
+        "theme": { "donor": "bridgewater-com", "note": "paper ground, one accent, a single dark figure panel; in Kakde's cream, navy and emerald" },
+        "typography": { "donor": "bridgewater-com", "note": "serif for thought, tracked small caps for wayfinding; set in Source Serif 4 and JetBrains Mono" },
+        "hero": { "donor": "bridgewater-com", "note": "work-as-hero card: the flagship study left, its chart right" },
+        "navigation": { "donor": "bridgewater-com", "note": "one row of small-caps links under the wordmark; hides on scroll down, returns on scroll up" },
+        "footer": { "donor": "bridgewater-com", "note": "large wordmark beside a ruled index of sections" },
+        "layout": { "donor": "rhg-com", "note": "dated, typed research row directly under the hero" },
+        "hover": { "donor": "rhg-com", "note": "underline draws via background-size over 0.3s ease" },
+        "responsive": { "donor": "rhg-com", "note": "4 to 2 to 1 column, headline steps down" },
+        "components": { "donor": "capitaleconomics-com", "note": "a current chart with its source beside the lead item" },
+        "buttons": { "donor": "127-0-0-1", "note": "the current solid block button and arrow text link" },
+        "reveals": { "donor": "127-0-0-1", "note": "0.8s staggered rise, lines drawn on load" },
+        "details": { "donor": "127-0-0-1", "note": "mono metadata and hairline rules" }
+      },
+      "bestFor": "readers who judge a research firm by its research", "risks": ["needs a steady flow of new work to keep the first screen fresh", "quietest of the three"], "cost": "low" },
+    { "id": "B", "name": "The Instrument", "thesis": "The firm as a measuring device: a position in two lines over a field of real data, inside a ruled frame.",
+      "personality": ["precise", "engineered", "confident"], "anchor": "variantperception-com", "coherenceNote": "theme and typography both come from the anchor",
+      "parts": {
+        "theme": { "donor": "variantperception-com", "note": "deep ground with the accent reserved for the action; in Kakde's navy and emerald rather than their navy and red" },
+        "typography": { "donor": "variantperception-com", "note": "one light sans at 64px / 1.2 / -0.011em; set in Inter 300" },
+        "hero": { "donor": "variantperception-com", "note": "two-line statement, short paragraph, two buttons, a bar field rising from the fold; bars are the firm's own value-creation data" },
+        "buttons": { "donor": "variantperception-com", "note": "square, uppercase 11.5px" },
+        "details": { "donor": "variantperception-com", "note": "pill labels introduce each section; 1px frame rails" },
+        "reveals": { "donor": "variantperception-com", "note": "line-masked headline, 0.9s expo-out" },
+        "layout": { "donor": "capitaleconomics-com", "note": "dark hero then a light evidence band" },
+        "navigation": { "donor": "alpinemacro-com", "note": "filled CTA fixed in the header's right corner" },
+        "components": { "donor": "alpinemacro-com", "note": "numbered 01-02-03 proposition cards" },
+        "scroll": { "donor": "tslombard-com", "note": "stepped list that fills in as it is scrolled" },
+        "footer": { "donor": "tslombard-com", "note": "four plain columns" },
+        "responsive": { "donor": "rhg-com", "note": "type steps down, frame kept" }
+      },
+      "bestFor": "allocators and quants; the natural home for the globe hero", "risks": ["closest to a direct competitor's structure: palette, type and data are Kakde's so it is not mistakable for them", "light weights need care at small sizes"], "cost": "medium" },
+    { "id": "C", "name": "The Ledger", "thesis": "Be the one a visitor remembers: tall capitals, ruled drawings, solid colour, a question to answer.",
+      "personality": ["bold", "literary", "idiosyncratic"], "anchor": "verdadcap-com",
+      "parts": {
+        "theme": { "donor": "verdadcap-com", "note": "stone ground with ink and one green as solid fields" },
+        "typography": { "donor": "verdadcap-com", "note": "tracked capitals at 0.06em for display, serif italic for the line beneath; Inter 600 stretched, since the brand has no condensed face" },
+        "buttons": { "donor": "verdadcap-com", "note": "full-width bordered bar with tracked caps" },
+        "navigation": { "donor": "verdadcap-com", "note": "lowercase inline links" },
+        "hero": { "donor": "eurasiagroup-net", "note": "one statement fills the first screen beside a plate" },
+        "components": { "donor": "eurasiagroup-net", "note": "'What are you deciding?' circular chooser routing four kinds of question" },
+        "layout": { "donor": "ourworldindata-org", "note": "evidence as a grid of cards, a chart among them" },
+        "responsive": { "donor": "ourworldindata-org", "note": "cards stack, nav scrolls sideways" },
+        "details": { "donor": "ourworldindata-org", "note": "source line on every figure" },
+        "media": { "donor": "restofworld-org", "note": "one treatment for every image; here a ruled line-drawing system, which needs commissioning" },
+        "reveals": { "donor": "original", "note": "1s opacity only; the type does the work" },
+        "footer": { "donor": "original", "note": "wordmark in display capitals over lowercase columns" }
+      },
+      "bestFor": "standing out in a field of navy-and-white sites", "risks": ["furthest from the current brand", "needs commissioned illustration to be finished", "uppercase display is harder to read at length"], "cost": "high" }
+  ]
+}

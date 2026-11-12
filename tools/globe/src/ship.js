@@ -38,8 +38,11 @@ function buildModel() {
   box(0.052, 0.018, 0.052, -0.44, 0.19, 0, 0x58be96);       /* funnel band */
   const geo = mergeGeometries(parts.map((p) => (p.index ? p.toNonIndexed() : p)), false);
   geo.computeVertexNormals();
-  /* drawn after the event points, so the ship always sits on top of them */
-  const mesh = new Mesh(geo, new MeshLambertMaterial({ vertexColors: true, transparent: true, opacity: 1 })); mesh.renderOrder = 10; return mesh;
+  /* Drawn last, on a cleared depth buffer: the tilted ship is never cut by the sphere, the borders or the points,
+     but still hides its own far side. Its visibility on the far side of the globe is handled by fading. */
+  const mesh = new Mesh(geo, new MeshLambertMaterial({ vertexColors: true, transparent: true, opacity: 1 })); mesh.renderOrder = 10;
+  mesh.onBeforeRender = (renderer) => renderer.clearDepth();
+  return mesh;
 }
 
 const WAKE_VERT = `attribute float a; uniform float px; varying float va; void main() { va = a; vec4 mv = modelViewMatrix * vec4(position, 1.0); gl_PointSize = px * (0.35 + 0.65 * a); gl_Position = projectionMatrix * mv; }`;
@@ -51,7 +54,7 @@ export function createShip(scene, world, camera, router, opts = {}) {
   scene.add(new HemisphereLight(0xf4f0e6, 0x0e1d38, 1.15));
   const sun = new DirectionalLight(0xffffff, 1.6); sun.position.set(-0.55, 0.6, 0.6); scene.add(camera); camera.add(sun);
 
-  const LEN = 0.115, R = 1.0012;
+  const LEN = 0.17, R = 1.003;
   const ship = new Group(); const model = buildModel(); ship.add(model); ship.matrixAutoUpdate = false; world.add(ship);
 
   const W_N = 70; const wakePos = new Float32Array(W_N * 3), wakeA = new Float32Array(W_N); let wakeHead = 0, wakeCount = 0;
@@ -65,7 +68,7 @@ export function createShip(scene, world, camera, router, opts = {}) {
 
   let pos = toVec(19.08, 72.88).normalize(), heading = new Vector3(0, 1, 0);
   let path = null, cum = null, total = 0, t = 0, dur = 1, state = 'docked', target = null, onArrive = null, rippleT = -1, linkFade = 0;
-  const basis = new Matrix4(), q = new Quaternion();
+  const basis = new Matrix4(), q = new Quaternion(), viewHeading = new Vector3(1, 0, 0);
 
   function setLink(dockV, placeV) {
     if (link) { world.remove(link); link.geometry.dispose(); link = null; }
@@ -117,13 +120,31 @@ export function createShip(scene, world, camera, router, opts = {}) {
     linkMat.opacity = state === 'docked' ? 0.85 * Math.min(1, linkFade * 2) : Math.max(0, linkMat.opacity - dt * 3);
     if (link && linkMat.opacity <= 0 && state === 'sailing') { world.remove(link); link = null; }
 
-    const up = pos.clone().normalize(); const fwd = heading.clone().sub(up.clone().multiplyScalar(heading.dot(up))).normalize(); const side = fwd.clone().cross(up);
+    /* Shown at three-quarters, not straight down: the ship's "up" leans from the surface toward the top of the screen
+       and toward the viewer, so its hull, containers and bridge read from the side. Its heading is the route's
+       direction on screen; in port it turns to lie diagonally, bow to the upper right. */
+    const up0 = pos.clone().normalize();
+    const invW = world.quaternion.clone().invert();
+    const camUp = new Vector3(0, 1, 0).applyQuaternion(camera.quaternion).applyQuaternion(invW);
+    const camRight = new Vector3(1, 0, 0).applyQuaternion(camera.quaternion).applyQuaternion(invW);
+    const shipW = up0.clone().applyQuaternion(world.quaternion);
+    const toCam = camera.position.clone().sub(shipW).normalize().applyQuaternion(invW);
+    const facing = toCam.dot(up0);
+    const up = up0.clone().multiplyScalar(0.35).add(camUp.clone().multiplyScalar(0.62)).add(toCam.clone().multiplyScalar(0.45)).normalize();
+    const diag = camRight.clone().multiplyScalar(0.78).add(camUp.clone().multiplyScalar(0.62));
+    let want = heading.clone();
+    const screenOf = (v) => v.clone().sub(toCam.clone().multiplyScalar(v.dot(toCam)));
+    if (state === 'docked' || screenOf(want).length() < 0.25) want = diag; else { want = screenOf(want).normalize(); if (want.dot(camRight) < -0.2) want.add(camUp.clone().multiplyScalar(0.25)); }
+    viewHeading.lerp(want, Math.min(1, dt * 3)).normalize();
+    const fwd = viewHeading.clone().sub(up.clone().multiplyScalar(viewHeading.dot(up))).normalize(); const side = fwd.clone().cross(up);
     basis.makeBasis(fwd, up, side);
+    model.material.opacity = Math.max(0, Math.min(1, (facing - 0.08) / 0.22));
     const roll = reduce ? 0 : Math.sin(tick * 1.6) * 0.035, pitch = reduce ? 0 : Math.sin(tick * 1.1 + 1) * 0.02;
     q.setFromRotationMatrix(basis); const bob = new Quaternion().setFromAxisAngle(fwd, roll).multiply(new Quaternion().setFromAxisAngle(side, pitch));
-    const sc = LEN * (1 - 0.5 * zoom);
-    ship.matrix.compose(up.clone().multiplyScalar(R), bob.multiply(q), new Vector3(sc, sc, sc)); ship.matrixWorldNeedsUpdate = true;
-    if (rippleT >= 0) { rippleT += dt; const r = rippleT / 1.4; if (r >= 1) { rippleT = -1; ripple.material.opacity = 0; } else { ripple.position.copy(up.clone().multiplyScalar(1.0014)); ripple.lookAt(up.clone().multiplyScalar(2)); ripple.scale.setScalar(LEN * (0.4 + 1.2 * r) * (1 - 0.5 * zoom)); ripple.material.opacity = 0.7 * (1 - r); } }
+    /* phones draw the globe smaller, so the ship is drawn a size larger there */
+    const sc = LEN * (1 - 0.5 * zoom) * ((opts.width ? opts.width() : 1000) < 700 ? 1.4 : 1);
+    ship.matrix.compose(up0.clone().multiplyScalar(R), bob.multiply(q), new Vector3(sc, sc, sc)); ship.matrixWorldNeedsUpdate = true;
+    if (rippleT >= 0) { rippleT += dt; const r = rippleT / 1.4; if (r >= 1) { rippleT = -1; ripple.material.opacity = 0; } else { ripple.position.copy(up0.clone().multiplyScalar(1.0014)); ripple.lookAt(up0.clone().multiplyScalar(2)); ripple.scale.setScalar(LEN * (0.4 + 1.2 * r) * (1 - 0.5 * zoom)); ripple.material.opacity = 0.7 * (1 - r); } }
     if (linkMat.resolution) linkMat.resolution.set(opts.width ? opts.width() : 1, opts.height ? opts.height() : 1);
   }
   return {

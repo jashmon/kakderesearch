@@ -283,7 +283,7 @@ export function createGlobe(host, opts = {}) {
   });
   const up = (ev) => {
     pointers.delete(ev.pointerId); pinch = 0;
-    if (down && !dragging && hover) opts.onSelect && opts.onSelect(hover.e);
+    if (down && !dragging) { if (hover) opts.onSelect && opts.onSelect(hover.e); else opts.onEmptyClick && opts.onEmptyClick(); }
     if (dragging) tYaw = yaw + velocity * 12;
     down = null; dragging = false; canvas.classList.remove('is-dragging');
     if (ev.pointerType !== 'mouse') { px = py = -1e4; }

@@ -51,12 +51,14 @@ async function init() {
       if (e) show(e.id, { from: 'globe' }); else card.hidden = true;
     },
     onSelect(e) { sailToPoint(e); if (e.kind) return; pinned = true; show(e.id, { from: 'globe', pin: true }); },
+    onEmptyClick() { closeCard(); },
     onFrame() { place(); },
     onZoom(z) { root.classList.toggle('is-zoomed', z > 0.02); }
   });
   if (!globe) { root.classList.add('no-webgl'); }
   else { root.classList.add('has-webgl'); globe.setCentres(BASE, CENTRES); }
   let tipFor = null, hoverTimer = 0, dwellUntil = 0;
+  const closeCard = (...a) => closeCardImpl(...a);
   function sailToPoint(e, o = {}) { if (!globe) return; if (!o.onArrive) dwellUntil = performance.now() + 6000; globe.sailTo({ id: e.id, lat: e.lat, lon: e.lon }, { follow: false, ...o }); }
 
   /* ----- zoom controls ----- */
@@ -151,7 +153,10 @@ async function init() {
   window.addEventListener('scroll', queue, { passive: true }); window.addEventListener('resize', queue); wide.addEventListener('change', queue);
   sync();
 
-  root.addEventListener('keydown', (ev) => { if (ev.key === 'Escape') { pinned = false; card.hidden = true; } });
+  /* the news card closes on Escape, on a click on empty globe, and on any click outside the globe and the event bar */
+  function closeCardImpl() { pinned = false; card.hidden = true; tip.hidden = true; }
+  root.addEventListener('keydown', (ev) => { if (ev.key === 'Escape') closeCard(); });
+  document.addEventListener('pointerdown', (ev) => { if (card.hidden) return; const t = ev.target; if (stage.contains(t) || bar.contains(t)) return; closeCard(); }, { passive: true });
   ['pointermove', 'pointerdown', 'keydown', 'focusin', 'touchstart'].forEach((t) => root.addEventListener(t, () => { touched = performance.now(); }, { passive: true }));
 
   /* The tour: while nobody is touching it, the ship sails from event to event; each event is shown in

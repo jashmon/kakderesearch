@@ -40,19 +40,24 @@ async function init() {
   const globe = createGlobe(stage, {
     land: root.dataset.land,
     borders: root.dataset.borders,
+    seaGrid: root.dataset.seaGrid,
     onHover(e) {
+      clearTimeout(hoverTimer);
+      /* pointing at any point sends the ship there, after a short pause so a pointer passing over does not */
+      if (e) hoverTimer = setTimeout(() => sailToPoint(e), 160);
       if (e && e.kind) { tip.textContent = e.name; tip.hidden = false; tipFor = e.id; return; }
       tip.hidden = true; tipFor = null;
       if (mode !== 'hero' || pinned) return;
       if (e) show(e.id, { from: 'globe' }); else card.hidden = true;
     },
-    onSelect(e) { if (e.kind) return; pinned = true; show(e.id, { from: 'globe', pin: true }); },
+    onSelect(e) { sailToPoint(e); if (e.kind) return; pinned = true; show(e.id, { from: 'globe', pin: true }); },
     onFrame() { place(); },
     onZoom(z) { root.classList.toggle('is-zoomed', z > 0.02); }
   });
   if (!globe) { root.classList.add('no-webgl'); }
   else { root.classList.add('has-webgl'); globe.setCentres(BASE, CENTRES); }
-  let tipFor = null;
+  let tipFor = null, hoverTimer = 0, dwellUntil = 0;
+  function sailToPoint(e, o = {}) { if (!globe) return; if (!o.onArrive) dwellUntil = performance.now() + 6000; globe.sailTo({ id: e.id, lat: e.lat, lon: e.lon }, { follow: false, ...o }); }
 
   /* ----- zoom controls ----- */
   root.querySelectorAll('[data-zoom]').forEach((b) => b.addEventListener('click', () => {
@@ -76,12 +81,14 @@ async function init() {
       li.append(b); return li;
     }));
     bar.hidden = false; show(events[0].id, { from: 'tour' });
-  } else { bar.hidden = true; }
+    if (globe) { globe.placeShip({ id: events[0].id, lat: events[0].lat, lon: events[0].lon }); globe.faceLatLon(events[0].lat, events[0].lon, false, true); globe.setFollow(true); }
+    dwellUntil = performance.now() + 3500;
+  } else { bar.hidden = true; if (globe) globe.placeShip(BASE); }
 
   function show(id, { from, pin } = {}) {
     const e = events.find((x) => x.id === id); if (!e) return;
     current = id; index = events.indexOf(e);
-    if (globe) { globe.setActive(id); if (from !== 'globe') globe.face(id, !!pin || from === 'list' || from === 'step'); }
+    if (globe) { globe.setActive(id); if (from === 'list' || from === 'step') { globe.face(id, true); sailToPoint(e); } }
     const meta = `${e.source} · ${ago(e.publishedAt)}`;
     bar.querySelector('[data-b-place]').textContent = `${e.place} · ${e.categoryLabel}`;
     bar.querySelector('[data-b-title]').textContent = e.title;
@@ -116,8 +123,8 @@ async function init() {
   const ease = (t) => t * t * (3 - 2 * t);
   function setMode(next) {
     if (next === mode) return; mode = next; root.dataset.mode = next;
-    if (next === 'work') { card.hidden = true; pinned = false; if (globe) globe.setActive(null); }
-    else if (globe && current) globe.setActive(current);
+    if (next === 'work') { card.hidden = true; pinned = false; if (globe) { globe.setActive(null); sailToPoint(BASE); } }   /* home port while the page talks about where the work is done */
+    else { if (globe && current) globe.setActive(current); dwellUntil = performance.now() + 1500; }
   }
   let looking = false;
   function sync() {
@@ -147,12 +154,15 @@ async function init() {
   root.addEventListener('keydown', (ev) => { if (ev.key === 'Escape') { pinned = false; card.hidden = true; } });
   ['pointermove', 'pointerdown', 'keydown', 'focusin', 'touchstart'].forEach((t) => root.addEventListener(t, () => { touched = performance.now(); }, { passive: true }));
 
-  /* A quiet tour of the events while nobody is touching it. Reduced motion never starts it. */
+  /* The tour: while nobody is touching it, the ship sails from event to event; each event is shown in
+     the bar as the ship docks there. Any touch pauses it. Reduced motion never starts it. */
   if (globe && !reduce) setInterval(() => {
     if (mode !== 'hero' || pinned || document.hidden || !events.length || performance.now() - touched < 9000) return;
-    if (root.getBoundingClientRect().top < -80) return;
-    index = (index + 1) % Math.min(events.length, 8); show(events[index].id, { from: 'tour' });
-  }, 5600);
+    if (root.getBoundingClientRect().top < -80 || performance.now() < dwellUntil || globe.shipState !== 'docked') return;
+    const i = (index + 1) % Math.min(events.length, 12), e = events[i];
+    dwellUntil = Infinity;
+    sailToPoint(e, { follow: true, onArrive() { if (mode === 'hero' && !pinned) show(e.id, { from: 'tour' }); dwellUntil = performance.now() + 4200; } });
+  }, 400);
 }
 
 if (root) init();

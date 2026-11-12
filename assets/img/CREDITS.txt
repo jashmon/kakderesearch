@@ -20,9 +20,12 @@ RETIRED
   Pexels Licence. Removed 12 August 2026; replaced by the skyline plate.
 
 HOMEPAGE GLOBE (added 12 November 2026)
-  The globe uses no photograph or satellite image. Its land is drawn as dots
-  from world-land.svg in this folder (Natural Earth 1:110m, public domain,
-  see above), sampled in the browser by js/globe/globe.bundle.js.
+  The globe uses no photograph or satellite image. It is shaded in the browser
+  (blue sea, green land) from globe-land.png in this folder, a land mask
+  rasterised by tools/globe/make-land.mjs from Natural Earth 1:10m Admin 0
+  Countries, India point-of-view edition (public domain). The same tool
+  writes assets/data/sea-grid.json, the open-ocean grid the cargo ship sails;
+  the ship is drawn from simple shapes in js/globe/globe.bundle.js.
   Its country boundaries and coastlines come from assets/data/world-borders.json:
   Natural Earth 1:10m Admin 0 Countries, India point-of-view edition (public
   domain), simplified by tools/globe/make-borders.mjs. That edition shows India
